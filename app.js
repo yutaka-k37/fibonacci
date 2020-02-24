@@ -1,9 +1,15 @@
 'use strict';
+const memo = new Map()
+memo.set(0, 0)
+memo.set(1, 1)
 
 function fibonacci(number) {
-  if (number === 0) return 0
-  if (number === 1) return 1
-  return fibonacci(number - 1) + fibonacci(number - 2)
+  if (memo.has(number)) {
+    return memo.get(number)
+  }
+  const value = fibonacci(number - 1) + fibonacci(number - 2)
+  memo.set(number, value)
+  return value
 }
 
 const length = 40
